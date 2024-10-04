@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios de Catering</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Servicios de Catering</h1>
+        <form id="cateringForm">
+            <div class="form-group">
+                <label for="eventType">Tipo de Evento:</label>
+                <select id="eventType" required>
+                    <option value="matrimonio">Matrimonio</option>
+                    <option value="primera-comunion">Primera Comunión</option>
+                    <option value="bautizo">Bautizo</option>
+                    <option value="baby-shower">Baby Shower</option>
+                    <option value="fiesta-cumpleanos">Fiesta de Cumpleaños</option>
+                    <option value="grados">Grados</option>
+                    <option value="evento-empresarial">Evento Empresarial</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="menuOptions">Selecciona hasta 6 productos del menú:</label>
+                <div id="menuOptions">
+                    <!-- Aquí se cargarán las opciones del menú desde cateringmenu.html -->
+                </div>
+            </div>
+
+            <button type="submit" class="btn">Generar Cotización</button>
+        </form>
+
+        <table id="cotizacionTable" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Tipo de Evento</th>
+                    <th>Nombre</th>
+                    <th>Correo Electrónico</th>
+                    <th>Dirección</th>
+                    <th>Productos Seleccionados</th>
+                    <th>Valor del Evento</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="cotizacionEventType"></td>
+                    <td id="cotizacionName"></td>
+                    <td id="cotizacionEmail"></td>
+                    <td id="cotizacionAddress"></td>
+                    <td id="cotizacionMenuOptions"></td>
+                    <td>400,000 pesos</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Función para cargar las opciones del menú desde cateringmenu.html
+        function loadMenuOptions() {
+            fetch('cateringmenu.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('menuOptions').innerHTML = data;
+                })
+                .catch(error => console.error('Error al cargar las opciones del menú:', error));
+        }
+
+        // Llama a la función para cargar las opciones del menú cuando la página esté lista
+        document.addEventListener('DOMContentLoaded', loadMenuOptions);
+
+        document.getElementById('cateringForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const eventType = document.getElementById('eventType').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const address = document.getElementById('address').value;
+            const menuOptions = Array.from(document.querySelectorAll('#menuOptions input:checked')).map(input => input.value);
+
+            if (menuOptions.length > 6) {
+                alert('Solo puedes seleccionar hasta 6 productos del menú.');
+                return;
+            }
+
+            document.getElementById('cotizacionEventType').textContent = eventType;
+            document.getElementById('cotizacionName').textContent = name;
+            document.getElementById('cotizacionEmail').textContent = email;
+            document.getElementById('cotizacionAddress').textContent = address;
+            document.getElementById('cotizacionMenuOptions').textContent = menuOptions.join(', ');
+
+            tableToExcel('cotizacionTable', 'Cotización de Catering');
+        });
+    </script>
+
+    <script src="tableToExcel.js"></script>
+</body>
+</html>

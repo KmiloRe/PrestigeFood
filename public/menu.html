@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <title>Buffet </title>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i> </a>
+        <h1>Menú de Buffet</h1>
+    </header>
+    <section class="contenedor">
+        <!-- Contenedor de elementos -->
+        <div class="contenedor-items">
+            <div class="item">
+                <span class="titulo-item">Croissant</span>
+                <img src="img/croissant.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Bowl de Frutas</span>
+                <img src="img/bowlfrutas.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Quesos</span>
+                <img src="img/quesos.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Jamón</span>
+                <img src="img/jamon.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Postre</span>
+                <img src="img/postre.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Mini pizza</span>
+                <img src="img/pizza.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Omelet</span>
+                <img src="img/omelet.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Café</span>
+                <img src="img/cafe.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Ensalada</span>
+                <img src="img/ensalada.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Bowl de cereal</span>
+                <img src="img/bowlcereal.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Pastel de Carne</span>
+                <img src="img/pastel.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+            <div class="item">
+                <span class="titulo-item">Jugo</span>
+                <img src="img/jugo.png" alt="" class="img-item">
+                <button class="boton-item">Agregar a la bandeja</button>
+            </div>
+
+           
+            <button id="payButton">Pago</button>
+            <div id="paymentModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h1>Verificación de Pago </h1>
+                    <h3>Valor del servicio: 80.000$</h3>
+                    <p>Ingrese su número de celular:</p>
+                    <input type="text" id="phoneNumber" placeholder="Número de celular">
+                    <button id="sendCodeButton">Enviar Código</button>
+                    <div id="verificationSection" style="display:none;">
+                        <p>Ingrese el código recibido:</p>
+                        <input type="text" id="verificationCode" placeholder="Código de verificación">
+                        <button id="verifyCodeButton">Verificar y Pagar</button>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                // Obtener los elementos del DOM
+                const modal = document.getElementById("paymentModal");
+                const payButton = document.getElementById("payButton");
+                const closeButton = document.getElementsByClassName("close")[0];
+                const sendCodeButton = document.getElementById("sendCodeButton");
+                const verificationSection = document.getElementById("verificationSection");
+                const verifyCodeButton = document.getElementById("verifyCodeButton");
+        
+                // Código generado aleatoriamente
+                let generatedCode;
+        
+                // Mostrar la ventana emergente
+                payButton.onclick = function() {
+                    modal.style.display = "block";
+                }
+        
+                // Cerrar la ventana emergente
+                closeButton.onclick = function() {
+                    modal.style.display = "none";
+                }
+        
+                // Cerrar la ventana emergente si se hace clic fuera de ella
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+        
+                // Enviar código de verificación
+                sendCodeButton.onclick = async function() {
+                    const phoneNumber = document.getElementById("phoneNumber").value;
+                    if (!phoneNumber) {
+                        alert("Por favor, ingrese su número de celular.");
+                        return;
+                    }
+        
+                    // Generar un código de verificación de 6 dígitos
+                    generatedCode = Math.floor(100000 + Math.random() * 900000);
+        
+                    // Llamar a la API para enviar el código
+                    await sendSMSCode(phoneNumber, generatedCode);
+        
+                    // Mostrar la sección de verificación
+                    verificationSection.style.display = "block";
+                }
+        
+                // Verificar el código ingresado
+                verifyCodeButton.onclick = function() {
+                    const enteredCode = document.getElementById("verificationCode").value;
+                    if (enteredCode == generatedCode) {
+                        alert("Pago realizado con éxito.");
+                        modal.style.display = "none";
+                    } else {
+                        alert("Código de verificación incorrecto. Inténtelo de nuevo.");
+                    }
+                }
+        
+                // Función para enviar el código de verificación a través de SMS
+                async function sendSMSCode(phoneNumber, code) {
+                    const response = await fetch('/send-code', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ phoneNumber, code })
+                    });
+        
+                    const data = await response.json();
+                    if (data.success) {
+                        console.log('Código enviado exitosamente:', data.messageSid);
+                    } else {
+                        console.error('Error al enviar el código:', data.error);
+                    }
+                }
+                
+                function openPaymentModal() {
+                    document.getElementById('paymentModal').style.display = 'block';
+                }
+
+                function closePaymentModal() {
+                    document.getElementById('paymentModal').style.display = 'none';
+                }
+            </script>
+    <style>
+       #payButton {
+            background-color: rgb(248, 176, 0);
+            border-radius: 25px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 20px;
+            color: #fff;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            line-height: 1.2;
+            transition: all 0.4s;
+            box-shadow: 0px 0px 10px 0px rgba(255, 75, 90, 0.5);
+        }
+
+        #payButton:hover {
+            background-color: rgba(255, 75, 90, 0.7);
+            box-shadow: 0px 0px 15px 0px rgba(255, 75, 90, 0.7);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 5px solid #888;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+    </style>
+        </div>
+        <!-- Carrito de Compras -->
+        <div class="carrito" id="carrito">
+            <div class="header-carrito">
+                <h2>Tu Bandeja</h2>
+            </div>
+
+            <div class="carrito-items">
+               
+            </div>
+            <div class="carrito-total">
+                <div class="fila">
+                    <strong>Buen Provecho!</strong>
+                    <span class="carrito-precio-total">
+                        <!-- Removed total price display -->
+                    </span>
+                </div>
+                <button class="btn-pagar">Llevar <i class="fa-solid fa-bag-shopping"></i> </button>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/app.js"></script>
+
+</body>
+</html>

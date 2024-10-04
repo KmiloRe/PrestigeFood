@@ -1,0 +1,615 @@
+<!Doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Prestige Food - Desarrollo web</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap&subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"> 
+        
+        <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/reset.css">
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/animate.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+
+
+        </head>
+        <body>
+            <header class="top">
+                  <div class="fixedArea">
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12 noPadding">
+                            <div class="content-wrapper one">
+                                <!-- Main Menu Start -->
+                                <!-- Navbar-->
+                                <header class="header">
+                                    <nav class="navbar navbar-default myNavBar">
+                                        <div class="container">
+
+                                            <!-- Brand and toggle get grouped for better mobile display -->
+                                            <div class="navbar-header">
+                                                <div class="row">
+                                                    <div class="col-md-9 col-sm-9 col-xs-9">
+                                                        <div class="row">
+                                                            <div class="col-md-3 col-xs-3 col-sm-3">
+                                                                <a style="padding-top:0px;" class="navbar-brand navBrandText text-uppercase font-weight-bold" href="index.html"><img src="img/logo/logo1.png" alt="restorant" /></a>
+                                                                
+                                                            </div>
+                                                            <div class="col-md-9 col-sm-9 col-xs-9">
+                                                                <a href="index.html"><img class="img-responsive logo" src="img/logo/cemrebakerytextlogolight.png" alt="restorant" /></a>
+                                                                
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                    <div class="col-md-3 col-sm-3 col-xs-3">
+                                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                                            <span class="sr-only">Toggle navigation</span>
+                                                            <span class="icon-bar"></span>
+                                                            <span class="icon-bar"></span>
+                                                            <span class="icon-bar"></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                                     
+                                            <!-- Collect the nav links, forms, and other content for toggling -->
+                                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                            <ul class="nav navbar-nav navbar-right navBar">
+                                                    <li class="nav-item"><a href="#section0" class="nav-link text-uppercase font-weight-bold js-scroll-trigger">Home <span class="sr-only">(current)</span></a></li>
+                                                    <li class="nav-item"><a href="#section2" class="nav-link text-uppercase font-weight-bold js-scroll-trigger">Nosotros</a></li>
+                                                    <li class="nav-item"><a href="#section3" class="nav-link text-uppercase font-weight-bold js-scroll-trigger">Menú</a></li>
+                                                    <li class="nav-item"><a href="#section4" class="nav-link text-uppercase font-weight-bold js-scroll-trigger">Testimonio</a></li>
+                                                    <!--<li class="nav-item"><a href="#section5" class="nav-link text-uppercase font-weight-bold js-scroll-trigger">Blog</a></li>-->
+                                                    <li class="nav-item"><a href="#section6" class="nav-link text-uppercase font-weight-bold js-scroll-trigger">Contacto</a></li>
+                                                    <!--<li class="nav-item"><a href="login.html" class="nav-link text-uppercase font-weight-bold js-scroll-trigger"> Login</a></li>
+                                                    <li class="nav-item"><a href="register.html" class="nav-link text-uppercase font-weight-bold js-scroll-trigger"> Register</a></li>-->
+                                                    <li class="nav-item dropdown">
+                                                        <a href="#" class="nav-link text-uppercase font-weight-bold js-scroll-trigger dropbtn">Mi Cuenta</a>
+                                                        <div class="dropdown-content">
+                                                            <a href="login.html">Iniciar Sesión</a>
+                                                            <a href="register.html">Registrarse</a>
+                                                            <a href="#opcion3" id="logoutLink">Cerrar Sesión</a>
+                                                        </div>
+                                                    </li>  
+                                                        <script>
+                                                            // Obtener el botón y el contenido del dropdown
+                                                            var dropbtn = document.querySelector(".dropbtn");
+                                                            var dropdownContent = document.querySelector(".dropdown-content");
+
+                                                            // Añadir un evento de clic al botón
+                                                            dropbtn.onclick = function(event) {
+                                                                event.preventDefault(); // Prevenir el comportamiento por defecto del enlace
+                                                                // Alternar la visibilidad del dropdown
+                                                                dropdownContent.style.display = dropdownContent.style.display === "block" ? "none" : "block";
+                                                            }
+
+                                                            // Cerrar el dropdown si se hace clic fuera de él
+                                                            window.onclick = function(event) {
+                                                                if (!event.target.matches('.dropbtn') && !event.target.matches('.dropdown-content a')) {
+                                                                    dropdownContent.style.display = "none";
+                                                                }
+                                                            }
+                                                        </script>
+                                                    
+                                                    
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                </header>
+                                <!-- Main Menu End -->
+                            </div>
+						</div>
+                  </div>
+			</div>
+		</header>
+		<!-- Header Area End -->
+		<!-- Section0 Area Start -->
+        <section id="section0" class="slider-area"> 
+            <div class="main-slider owl-theme owl-carousel"> 
+                <!-- Start Slingle Slide -->
+                <div class="single-slide item" style="background-image: url(img/slider/1900x1000.png)">
+
+
+                    <!-- <img src="img/slider/placehold.png"> -->
+
+                    <!-- Start Slider Content -->
+
+                        <div class="slider-content-area">  
+                                <div class="row">
+                                        <div class="slide-content-wrapper text-center">
+                                            <div class="slide-content">
+                                                <img class="classic" src="img/logo/logo11.png">
+                                                <h3>PRESTIGE FOOD </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                    </div>
+                    <!-- Start Slider Content -->
+                </div>
+                
+             </div>
+        </section>
+
+		<!-- Section0 Area End -->
+        <!-- Section2 Start -->
+        <section id="section2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="maintext text-center">
+                            <span>UPB 2024</span>
+                            <h2>Bienvenido a Prestige Food </h2>
+                            <p>Prestige Food es un restaurante buffet donde la variedad y la frescura se unen para ofrecerte una experiencia culinaria excepcional. Disfruta de un festín ilimitado de platillos deliciosos, preparados con ingredientes de alta calidad. Además, nuestro servicio de catering personalizado se adapta a tus eventos especiales, garantizando que cada ocasión sea memorable. ¡Ven y descubre el placer de comer sin límites en un ambiente acogedor!</p>                        
+                            </div>  
+                    </div>
+                </div>
+                <div class="row shapes">
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12 minHeightProp">
+                                <img class="imgback" src="img/shape/shape1.png">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <span>Servicio de Catering</span>
+                                    <p>Organiza tu evento especial con nuestro servicio de catering.
+                                      Ofrecemos nuestro menú para bodas, fiestas y reuniones, asegurando que cada detalle sea perfecto y que tus invitados disfruten de una experiencia culinaria excepcional.
+                                    </p>                                
+                                    </div> 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12 minHeightProp">
+                                <img class="imgback" src="img/shape/shape2.png">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <span>Buffet Ilimitado</span>
+                                    <p>Disfruta de una experiencia gastronómica sin límites con nuestro buffet, donde puedes saborear una amplia variedad de platillos de diferentes culturas y regresar tantas veces como desees.
+                                        Desde opciones saludables hasta delicias indulgentes, hay algo para todos los gustos.
+
+                                    </p>
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12 minHeightProp">
+                                <img class="imgback" src="img/shape/shape3.png">
+                            </div>
+                            <div class="col-md-12">
+                                <div class="text-center">
+                                    <span>Calidad y Frescura</span>
+                                    <p>En "Prestige Food", nos comprometemos a ofrecer solo los ingredientes más frescos y de alta calidad.
+                                     Nuestros chefs expertos preparan cada platillo con atención al detalle, garantizando que cada bocado sea una experiencia deliciosa y satisfactoria. </p>
+                                </div> 
+                            </div> 
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section2 End -->
+        
+        <!-- Section3 Start -->
+        
+        <section id="section3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="section-title text-center">
+                            <h3>UPB</h3>
+                            <h2>Visualiza nuestro menú</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-link">
+                    <a href="menu.html" class="styled-link">
+                        <span>Menú Buffet</span>
+                    </a>
+                </div>
+        </section>
+        <!-- Section3 End -->
+        <!-- Testimonial Area Start -->
+        <section id="section4" class="parallax-window" data-parallax="scroll" data-image-src="img/slider/1900x1000.png">
+            <h3>Prestige Food</h3>
+            <h2>Testimonio de un cliente</h2>
+        <div class="testimonial-area owl-theme owl-carousel" >
+               
+            <div class="col-md-12 col-sm-12 col-xs-12 noPadding text-center">
+                
+
+                <div class="single-testimonial">
+                    <div class="testimonial-info">
+                        <div class="testimonial-content">
+                            <p>"¡La experiencia con Prestige Food fue excepcional! Desde el servicio de catering hasta los deliciosos platos, todo superó mis expectativas. Recibí comentarios increíbles de mis invitados sobre la calidad y presentación de la comida. Sin duda, los recomendaré para cualquier evento. ¡Gracias, Prestige Food!"</p>
+                            <h4>Jose Miguel Alvarez</h4>
+                            <h5>Estudiante, UPB</h5>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-12 col-sm-12 col-xs-12 noPadding text-center">
+                <div class="single-testimonial">
+                    <div class="testimonial-info">
+                        <div class="testimonial-content">
+                            <p>I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and I will give you a coete account of the system, and expound the actual</p>
+                            <h4>David Morgan</h4>
+                            <h5>Student, CSE</h5>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+            <div class="col-md-12 col-sm-12 col-xs-12 noPadding text-center">
+                <div class="single-testimonial">
+                    <div class="testimonial-info">
+                        <div class="testimonial-content">
+                            <p>I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and I will give you a coete account of the system, and expound the actual</p>
+                            <h4>David Morgan</h4>
+                            <h5>Student, CSE</h5>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+        </section>
+        <!-- Testimonial Area End -->
+        <!-- Blog Area Start -->
+        <section id="section5" class="blog-area">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="blog-section-title text-center">
+                        <h3>Prestige Food</h3>
+                        <h2>Nuestra Ubicación</h2>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="iframe-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.147634127837!2d-75.59468242428694!3d6.244266677613592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429a449e65a5f%3A0x8a72a6aa16e8819f!2sPontifical%20Bolivarian%20University!5e0!3m2!1sen!2sco!4v1722961979209!5m2!1sen!2sco" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <style>
+            .iframe-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+        </style>
+        
+        <!-- Blog Area End -->
+        <!-- Contact Start -->
+        <section id="section6" class="contact">
+            <div class="contact100-form-title container">
+                <h3>Servicios de Catering</h3>
+                <h2>Solicita Nuestro Servicio</h2>
+                <div class="error-message" style="color: red;"></div> <!-- Mensaje de error -->
+                <form class="contact100-form validate-form" id="cateringForm" onsubmit="handleFormSubmit(event)">
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Tipo de Evento</span>
+                        <select id="eventType" name="eventType" required>
+                            <option value="" disabled selected>Seleccione un evento</option>
+                            <option value="matrimonio">Matrimonio</option>
+                            <option value="primera-comunion">Primera Comunion</option>
+                            <option value="bautizo">Bautizo</option>
+                            <option value="baby-shower">Baby Shower</option>
+                            <option value="fiesta-cumpleanos">Fiesta de Cumpleanos</option>
+                            <option value="grados">Grados</option>
+                            <option value="evento-empresarial">Evento Empresarial</option>
+                        </select>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Nombre</span>
+                        <input class="input100" type="text" id="clientName" name="clientName" placeholder="Ingrese su nombre" required>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Apellidos</span>
+                        <input class="input100" type="text" id="clientLastName" name="clientLastName" placeholder="Ingrese sus apellidos" required>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Correo Electronico</span>
+                        <input class="input100" type="email" id="clientEmail" name="clientEmail" placeholder="Ingrese su correo electronico" required>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Direccion</span>
+                        <input class="input100" type="text" id="clientAddress" name="clientAddress" placeholder="Ingrese su direccion" required>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Celular</span>
+                        <input class="input100" type="tel" id="clientPhone" name="clientPhone" placeholder="Ingrese su celular" pattern="[0-9]+" required>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Fecha del Evento</span>
+                        <input class="input100" type="date" id="eventDate" name="eventDate" required>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div class="wrap-input100 rs1-wrap-input100 validate-input">
+                        <span class="label-input100">Hora del Evento</span>
+                        <input class="input100" type="time" id="eventTime" name="eventTime" required>
+                        <span class="focus-input100"></span>
+                    </div>
+    
+                    <div id="menuContainer" class="wrap-input100 validate-input">
+                        <!-- Las opciones del menú se cargarán aquí dinámicamente -->
+                    </div>
+    
+                    <div class="container-contact100-form-btn">
+                        <button type="submit" class="contact100-form-btn">
+                            <span>
+                                Enviar Solicitud
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+        
+        <main>
+            <div id="main-content">
+            </div>
+        </main>
+    
+        <script>
+            // Función para manejar el envío del formulario
+            function handleFormSubmit(event) {
+                event.preventDefault(); // Prevenir el envío del formulario
+    
+                // Validación del correo electrónico
+                const emailField = document.getElementById('clientEmail');
+                const emailValue = emailField.value;
+                const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    
+                if (!emailPattern.test(emailValue)) {
+                    alert('Ingrese un correo electronico valido.');
+                    emailField.focus();
+                    return;
+                }
+    
+                // Obtener los datos del formulario
+                const eventType = document.getElementById('eventType').value;
+                const clientName = document.getElementById('clientName').value;
+                const clientLastName = document.getElementById('clientLastName').value;
+                const clientEmail = document.getElementById('clientEmail').value;
+                const clientAddress = document.getElementById('clientAddress').value;
+                const clientPhone = document.getElementById('clientPhone').value;
+                const eventDate = document.getElementById('eventDate').value;
+                const eventTime = document.getElementById('eventTime').value;
+                
+                const selectedProducts = Array.from(document.querySelectorAll('#menuContainer input[type="checkbox"]:checked'))
+                                               .map(checkbox => checkbox.value);
+                const numProducts = selectedProducts.length;
+    
+                // Calcular el precio según la cantidad de productos seleccionados
+                let price = 0;
+                if (numProducts === 3) {
+                    price = 300000;
+                } else if (numProducts > 3 && numProducts <= 6) {
+                    price = 600000;
+                } else if (numProducts > 6 && numProducts <= 12) {
+                    price = 800000;
+                } else {
+                    alert("Seleccione entre 3 y 12 productos.");
+                    return;
+                }
+    
+                // Generar el nombre del archivo y el título
+                const fileName = `Cotizacion_${eventType}.xls`;
+                const tableTitle = `Cotizacion del Evento: ${eventType.charAt(0).toUpperCase() + eventType.slice(1)}`;
+    
+                // Crear la tabla HTML para exportar
+                let tableHTML = `
+                    <table id="cotizacionTable" summary="Cotizacion del evento de catering" rules="groups" frame="hsides" border="2">
+                        <caption>${tableTitle}</caption>
+                        <thead valign="top">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Correo</th>
+                                <th>Direccion</th>
+                                <th>Celular</th>
+                                <th>Evento</th>
+                                <th>Fecha del Evento</th>
+                                <th>Hora del Evento</th>
+                                <th>Productos</th>
+                                <th>Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>${clientName}</td>
+                                <td>${clientLastName}</td>
+                                <td>${clientEmail}</td>
+                                <td>${clientAddress}</td>
+                                <td>${clientPhone}</td>
+                                <td>${eventType}</td>
+                                <td>${eventDate}</td>
+                                <td>${eventTime}</td>
+                                <td>${selectedProducts.join(', ')}</td>
+                                <td>${price} pesos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                `;
+    
+                // Insertar la tabla en el documento y exportarla a Excel
+                document.body.insertAdjacentHTML('beforeend', tableHTML);
+                tableToExcel('cotizacionTable', tableTitle, fileName);
+    
+                // Eliminar la tabla temporal del documento
+                document.getElementById('cotizacionTable').remove();
+            }
+    
+            // Función para cargar las opciones del menú desde cateringmenu.html
+            function loadMenuOptions() {
+                fetch('cateringmenu.html')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('menuContainer').innerHTML = data;
+                    })
+                    .catch(error => console.error('Error al cargar las opciones del menu:', error));
+            }
+    
+            // Llama a la función para cargar las opciones del menú cuando la página esté lista
+            document.addEventListener('DOMContentLoaded', loadMenuOptions);
+        </script>
+        
+        <!-- Adress Section End -->
+        <!-- Footer Start -->
+        <footer class="footer-area">
+            <div class="container main-footer">
+                
+                <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-widget pr-60">
+                                <div class="footer-logo pb-25">
+                                    <div class="col-md-4 noPadding text-center">
+                                        <a class="" href="index.html"><img class="img-responsive" src="img/logo/logo11.png" alt="restorant" /></a>
+                                    </div>
+                                    <div class="col-md-8 noPadding logo-text">
+                                        <a class="" href="index.html"><img class="img-responsive" src="img/logo/cemrebakerytextlogo.png" alt="restorant" /></a>
+                                        <p class="colorfullText">Restaurante Buffet UPB</p>
+                                    </div>        
+                                </div>
+                                <p>Es una experiencia culinaria única que ofrece un delicioso menú de buffet, diseñado para satisfacer todos los gustos.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-widget">
+                                <h3>Información</h3>
+                                <p>En Prestige Food, nos enorgullecemos de ofrecer información clara y accesible sobre nuestros servicios y productos. Navega por nuestro sitio web para conocer más!</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-widget">
+                                <h3>Links</h3>
+                                <p class="lock"></p>
+                                <ul>
+                                    <li class="footer-section">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="footer-icon"></div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="https://www.upb.edu.co/es/home"><p>UPB</p></a>
+                                            </div>
+                                        </div>
+                                    </li>                                    
+                                    <li class="footer-section">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="footer-icon"></div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="https://www.instagram.com/upbcolombia/?hl=en"><p>Instagram UPB</p></a>
+                                            </div>
+                                        </div>
+                                    </li>                                
+                                    <li class="footer-section">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="footer-icon"></div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="https://x.com/upbcolombia?lang=en"><p>X UPB</p></a>
+                                            </div>
+                                        </div>
+                                    </li> 
+                                    <li class="footer-section">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="footer-icon"></div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="https://www.tiktok.com/@upbcolombia?lang=en"><p>Tik tok UPB</p></a>
+                                            </div>
+                                        </div>
+                                    </li>                                     
+                                    <li class="footer-section">
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-2 col-xs-2">
+                                                <div class="footer-icon"></div>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-xs-10">
+                                                <a href="https://co.linkedin.com/school/universidad-pontificia-bolivariana/"><p>linkedin UPB</p></a>
+                                            </div>
+                                        </div>
+                                    </li>                               
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="single-widget">
+                                <h3>Contactanos</h3>
+                                <p class="lock"></p>
+                                <p>Direccion, CL 78B # 72 A 109</p>
+                                <p>+57 322  607  80   87</p>
+                                <p>jose.alvarezt@upb.ed.co</p>
+                            </div>
+                        </div>
+                </div>
+            </div>   
+            <div class="footer-bottom text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <p>Copyright © Jose Miguel Alvarez, UPB 2024. Todos los derechos reservados.</p>
+                        </div> 
+                    </div>
+                </div>    
+            </div>
+        </footer>
+        <!-- Footer End -->
+        <script src="js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="js/jquery-easing/jquery.easing.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/parallax.min.js"></script>
+        <script src="js/ajax-mail.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/jquery.nicescroll.min.js"></script>
+        <script src="js/main.js"></script>
+        <script src="js/tableToExcel.js"></script>
+        <script type="module" src="js/firebase-config.js"></script>
+        
+    </body>
+</html>

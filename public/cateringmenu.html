@@ -1,0 +1,145 @@
+<!--<label><input type="checkbox" value="Producto 1"> Postre</label>
+<label><input type="checkbox" value="Producto 2"> Producto 2</label>
+<label><input type="checkbox" value="Producto 3"> Producto 3</label>
+<label><input type="checkbox" value="Producto 4"> Producto 4</label>
+<label><input type="checkbox" value="Producto 5"> Producto 5</label>
+<label><input type="checkbox" value="Producto 6"> Producto 6</label>
+<label><input type="checkbox" value="Producto 7"> Producto 7</label>
+<label><input type="checkbox" value="Producto 8"> Producto 8</label>
+<label><input type="checkbox" value="Producto 9"> Producto 9</label>
+<label><input type="checkbox" value="Producto 10"> Producto 10</label>
+
+<span class="focus-input100"></span>-->
+<div id="menuContainer" class="wrap-input100 validate-input">
+    <span class="label-input100">Selecciona los Productos</span>
+    <div id="menuOptions" class="contenedor-items">
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Croissant">
+                <span class="titulo-item">Croissant</span>
+                <img src="img/croissant.png" alt="Croissant" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Bowl de Frutas">
+                <span class="titulo-item">Bowl de Frutas</span>
+                <img src="img/bowlfrutas.png" alt="Bowl de Frutas" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Quesos">
+                <span class="titulo-item">Quesos</span>
+                <img src="img/quesos.png" alt="Quesos" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Jamón">
+                <span class="titulo-item">Jamón</span>
+                <img src="img/jamon.png" alt="Jamón" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Postre">
+                <span class="titulo-item">Postre</span>
+                <img src="img/postre.png" alt="Postre" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Mini pizza">
+                <span class="titulo-item">Mini pizza</span>
+                <img src="img/pizza.png" alt="Mini pizza" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Omelet">
+                <span class="titulo-item">Omelet</span>
+                <img src="img/omelet.png" alt="Omelet" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Café">
+                <span class="titulo-item">Café</span>
+                <img src="img/cafe.png" alt="Café" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Ensalada">
+                <span class="titulo-item">Ensalada</span>
+                <img src="img/ensalada.png" alt="Ensalada" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Bowl de cereal">
+                <span class="titulo-item">Bowl de cereal</span>
+                <img src="img/bowlcereal.png" alt="Bowl de cereal" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Pastel de Carne">
+                <span class="titulo-item">Pastel de Carne</span>
+                <img src="img/pastel.png" alt="Pastel de Carne" class="img-item">
+            </label>
+        </div>
+        <div class="item">
+            <label>
+                <input type="checkbox" value="Jugo">
+                <span class="titulo-item">Jugo</span>
+                <img src="img/jugo.png" alt="Jugo" class="img-item">
+            </label>
+        </div>
+    </div>
+    <span class="focus-input100"></span>
+</div>
+
+<style>
+    .contenedor-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.item {
+    position: relative;
+    text-align: center; /* Centrar texto */
+}
+
+.item img {
+    width: 100px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    height: auto; /* Mantiene la proporción */
+}
+
+.item label {
+    cursor: pointer; /* Cambia el cursor al pasar sobre el checkbox */
+}
+
+input[type="checkbox"] {
+    display: none; /* Oculta el checkbox */
+}
+
+input[type="checkbox"] + .titulo-item::before {
+    content: ''; /* Crea un espacio para el estilo */
+    display: inline-block;
+    width: 20px; /* Ancho del área del checkbox */
+    height: 20px; /* Alto del área del checkbox */
+    border: 2px solid #ccc; /* Borde del checkbox */
+    border-radius: 4px; /* Bordes redondeados */
+    margin-right: 8px; /* Espacio entre checkbox y título */
+    vertical-align: middle; /* Alineación vertical */
+}
+
+input[type="checkbox"]:checked + .titulo-item::before {
+    background-color: #007BFF; /* Color de fondo cuando está seleccionado */
+    border-color: #007BFF; /* Color del borde cuando está seleccionado */
+}
+
+</style>
